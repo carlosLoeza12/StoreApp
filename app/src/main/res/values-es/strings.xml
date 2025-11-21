@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">StoreApp</string>
+
+    // Categories Screen
+    <string name="categories_screen_category_item_image_description_image">Imagen del artículo</string>
+    <string name="categories_screen_information_icon_description">Icono de información</string>
+    <string name="categories_screen_navigation_icon_description">Icono de la barra de navegación</string>
+
+    // Nav Items
+    <string name="nav_item_categories">Categorías</string>
+    <string name="nav_item_shopping_cart">Carrito de compras</string>
+    <string name="nav_item_profile">Perfil</string>
+
+    // Cart Screen
+    <string name="cart_quantity_label">Cant. %d</string>
+    <string name="cart_dialog_title">Elija la cantidad del producto</string>
+    <string name="cart_subtract_button_description">Restar</string>
+    <string name="cart_add_button_description">Sumar</string>
+    <string name="cart_confirm_button">Confirmar</string>
+    <string name="cart_cancel_button">Cancelar</string>
+    <string name="cart_total">Total: $%1$.2f</string>
+    <string name="cart_pay">Pagar</string>
+    <string name="cart_delete_product_dialog_title">¿Desea eliminar el producto del carrito?</string>
+    <string name="cart_delete_product_icon_description">Icono de eliminar producto</string>
+    <string name="cart_pay_dialog_title">¿Deseas finalizar tu compra?</string>
+    <string name="cart_pay_dialog_text">Una vez confirmada, no podrás modificar el carrito.</string>
+    <string name="cart_product_price">$%1$.2f</string>
+
+    // Product Detail Screen
+    <string name="product_detail_details_title">Detalles</string>
+    <string name="product_detail_product_id_label">ID de producto</string>
+    <string name="product_detail_price_label">Precio</string>
+    <string name="product_detail_category_label">Categoría</string>
+    <string name="product_detail_add_to_cart_button">Añadir al carrito</string>
+
+</resources>
