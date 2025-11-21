@@ -1,10 +1,24 @@
 
 # Store App overview: 
+
+Video: https://drive.google.com/file/d/1ievwRg8pkC_OZAcOqRBkz6NG_yLMXHTL/view?usp=sharing
+
 Sign in to Store App with your Gmail account. In this application, you can browse products from different categories such as clothing, shoes, electronics, furniture, and more. Each product includes images, detailed information, and an option to add it to your cart.
 Inside the cart, you can modify the quantity of each product or remove it if you no longer wish to purchase it.
 
 To begin this project, the documentation of the API provided by Platzi, “Platzi Fake Store API”, was reviewed, where the information about the different endpoints needed to make requests was obtained.
-Subsequently, the Stitch tool from Google was used to design the application’s interface. Once the screens were defined, the design was exported to Figma to review details such as element sizes, images, paddings, and other visual aspects.
+
+The mobile application, developed in Android Studio, is focused on delivering a modern experience. It is built using Kotlin as the main programming language, along with the MVVM pattern combined with Clean Architecture, allowing for modular, maintainable, and highly testable code.
+
+The user interface is designed with Jetpack Compose, implementing Material Design 3 to achieve adaptive visual components. Navigation between screens is handled using Navigation Compose 2, taking advantage of typed routes and improved back stack control.
+
+The project integrates Dagger Hilt as the dependency injection system, facilitating lifecycle management and code scalability. Asynchronous operations and data layer communication are managed through Coroutines, ensuring efficient and non-blocking processes.
+
+Communication with external services is implemented through Retrofit, using interceptors to securely manage headers, errors, and network logs. For local storage and data persistence, Room is used, ensuring a reliable and efficient database.
+
+User authentication includes Gmail login, allowing fast and secure access to the application. Image handling is optimized with Coil, while interactive animations are integrated with Lottie, enhancing the user’s visual experience.
+
+To enhance development productivity, AI-based tools such as GitHub Copilot and a Gemini agent were used to support code generation, documentation, and smart suggestions. Finally, the quality of the project is validated through unit testing with MockK, ensuring correct and stable behavior of ViewModels, repositories, and use cases.
 
 # Next features to work on:
 - Finish Gmail login
