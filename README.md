@@ -21,8 +21,7 @@ User authentication includes Gmail login, allowing fast and secure access to the
 To enhance development productivity, AI-based tools such as GitHub Copilot and a Gemini agent were used to support code generation, documentation, and smart suggestions. Finally, the quality of the project is validated through unit testing with MockK, ensuring correct and stable behavior of ViewModels, repositories, and use cases.
 
 # Next features to work on:
-- Finish Gmail login
-- Finish user profile screen
+
 - Finish repository unit tests
 
 # Technologies and tools
@@ -37,6 +36,7 @@ To enhance development productivity, AI-based tools such as GitHub Copilot and a
 #Coroutines
 #Retrofit and interceptors
 #Room
+#Datastore
 #Login Gmail
 #Coil
 #Lottie aniamtion
@@ -59,11 +59,9 @@ Lottie animation: https://lottiefiles.com/
 
 # screenshots:
 
-<img width="172" alt="Imagen1" src="https://github.com/user-attachments/assets/8a2e2911-0a54-4549-9dab-0d2a7400b2c9">
+<img width="172" alt="Imagen1" src="https://github.com/user-attachments/assets/27d14466-ae84-457c-b3fb-76babe0269d4">
 
 <img width="172" alt="Imagen2" src="https://github.com/user-attachments/assets/f1a7d174-46df-4a65-8dbe-c70358d55af5">
-
-<img width="172" alt="Imagen3" src="https://github.com/user-attachments/assets/d1eee6f0-a87e-409d-88a3-45d66c149d20">
 
 <img width="172" alt="Imagen4" src="https://github.com/user-attachments/assets/2dbe6852-353e-44b7-bf99-1ea3f9c73e01">
 
@@ -72,3 +70,7 @@ Lottie animation: https://lottiefiles.com/
 <img width="172" alt="Imagen5" src="https://github.com/user-attachments/assets/a7572f5a-47ca-4e71-bb4b-0346f58adf2d">
 
 <img width="172" alt="Imagen5" src="https://github.com/user-attachments/assets/2a3bd6fe-8acb-4dcf-9cea-7cef9774ce60">
+
+<img width="172" alt="Imagen5" src="https://github.com/user-attachments/assets/b9395325-a67e-4342-a61b-1f8451935e0a">
+
+
