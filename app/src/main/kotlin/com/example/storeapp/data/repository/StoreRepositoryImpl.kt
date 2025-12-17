@@ -9,6 +9,7 @@ import com.example.storeapp.data.remote.model.toDomain
 import com.example.storeapp.domain.model.ProductCart
 import com.example.storeapp.domain.model.StoreCategory
 import com.example.storeapp.domain.model.StoreProduct
+import com.example.storeapp.domain.model.User
 import com.example.storeapp.domain.repository.StoreRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -65,5 +66,30 @@ class StoreRepositoryImpl @Inject constructor(
     override suspend fun updateProductsAsPurchased(productsId: List<Int>): Int {
 
         return localDataSource.updateProductsAsPurchased(productsId)
+    }
+
+    override suspend fun signInWithGoogle(idToken: String): User? {
+
+        return remoteDataSource.signInWithGoogle(idToken)
+    }
+
+    override suspend fun saveSession(user: User) {
+
+        localDataSource.saveUser(user)
+    }
+
+    override fun getUserSession(): Flow<User> {
+
+        return localDataSource.getUserSession()
+    }
+
+    override suspend fun logout(): Boolean {
+
+        return localDataSource.logout()
+    }
+
+    override suspend fun clearLocalData() {
+
+        localDataSource.clearProductCart()
     }
 }

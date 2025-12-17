@@ -31,4 +31,7 @@ interface ProductCartDao {
 
     @Query("UPDATE products_cart SET isPurchased = 1 WHERE productId IN (:productsId) AND isPurchased IS 0")
     suspend fun updateProductsAsPurchased(productsId: List<Int>): Int
+
+    @Query("DELETE FROM products_cart")
+    suspend fun clearProductCart()
 }

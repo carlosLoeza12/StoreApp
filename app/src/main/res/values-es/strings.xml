@@ -33,4 +33,24 @@
     <string name="product_detail_category_label">Categoría</string>
     <string name="product_detail_add_to_cart_button">Añadir al carrito</string>
 
+    <!-- Login Screen -->
+    <string name="login_title">StoreApp</string>
+    <string name="login_subtitle">Tus aventuras de compra \ncomienzan aquí</string>
+    <string name="login_button_google">Iniciar sesión con Google</string>
+    <string name="login_terms_privacy">Al continuar, aceptas nuestros términos y condiciones de servicio y politica de privacidad</string>
+    <string name="app_icon_description">Icono de la aplicación</string>
+    <string name="google_icon_description">Icono de Google</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_item_orders">Pedidos</string>
+    <string name="profile_item_wishlist">Lista de deseos</string>
+    <string name="profile_item_help">Ayuda</string>
+    <string name="profile_logout_button">Cerrar sesión</string>
+    <string name="profile_email_label">Correo electrónico</string>
+    <string name="profile_phone_label">Número de teléfono</string>
+    <string name="profile_phone_na">N/D</string>
+    <string name="profile_item_icon_description">Icono de elemento de perfil</string>
+    <string name="profile_logout_dialog_title">¿Desea cerrar sesión?</string>
+    <string name="profile_logout_dialog_text">Al cerrar sesión se borrarán todos los datos guardados.</string>
+    <string name="error_generic_message">Ocurrió un error inesperado</string>
 </resources>

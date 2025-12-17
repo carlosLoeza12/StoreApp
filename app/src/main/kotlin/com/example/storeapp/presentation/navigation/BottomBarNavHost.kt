@@ -22,7 +22,8 @@ import kotlin.reflect.typeOf
 fun BottomNavigationWrapper(
     modifier: Modifier = Modifier,
     navHostController: NavHostController,
-    categories: List<StoreCategory>
+    categories: List<StoreCategory>,
+    logout: () -> Unit
 ) {
 
     NavHost(
@@ -72,7 +73,7 @@ fun BottomNavigationWrapper(
 
         composable<ProfileTab> {
 
-            ProfileTabScreen()
+            ProfileTabScreen(navigateToLogin = logout)
         }
     }
 }
