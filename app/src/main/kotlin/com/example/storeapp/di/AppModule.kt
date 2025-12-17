@@ -1,6 +1,10 @@
 package com.example.storeapp.di
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.dataStoreFile
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.core.Preferences
 import androidx.room.Room
 import com.example.storeapp.core.util.AppConstants
 import com.example.storeapp.data.datasource.LocalStoreDataSource
@@ -8,9 +12,11 @@ import com.example.storeapp.data.datasource.RemoteStoreDataSource
 import com.example.storeapp.data.local.StoreDatabase
 import com.example.storeapp.data.local.StoreDatabase.Companion.DATABASE_NAME
 import com.example.storeapp.data.local.dao.ProductCartDao
+import com.example.storeapp.data.local.preferences.UserPreferencesDataStore
 import com.example.storeapp.data.remote.api.ApiService
 import com.example.storeapp.data.repository.StoreRepositoryImpl
 import com.example.storeapp.domain.repository.StoreRepository
+import com.google.firebase.auth.FirebaseAuth
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -35,6 +41,7 @@ annotation class IoDispatcher
 object DataModule {
 
     // region coroutines
+
     @IoDispatcher
     @Provides
     fun provideIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
@@ -42,6 +49,7 @@ object DataModule {
     // endregion
 
     // region data
+
     @Singleton
     @Provides
     fun provideStoreRepository(
@@ -57,21 +65,22 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideRemoteStoreDataSource(apiService: ApiService): RemoteStoreDataSource {
+    fun provideRemoteStoreDataSource(apiService: ApiService, firebaseAuth: FirebaseAuth): RemoteStoreDataSource {
 
-        return RemoteStoreDataSource(apiService)
+        return RemoteStoreDataSource(apiService, firebaseAuth)
     }
 
     @Singleton
     @Provides
-    fun provideLocalStoreDataSource(productCartDao: ProductCartDao): LocalStoreDataSource {
+    fun provideLocalStoreDataSource(productCartDao: ProductCartDao, userPreferencesDataStore: UserPreferencesDataStore): LocalStoreDataSource {
 
-        return LocalStoreDataSource(productCartDao)
+        return LocalStoreDataSource(productCartDao, userPreferencesDataStore)
     }
 
     // endregion
 
     // region Network
+
     @Singleton
     @Provides
     fun provideStoreService(retrofit: Retrofit): ApiService =
@@ -111,9 +120,26 @@ object DataModule {
         ).build()
     }
 
+    @Provides
+    @Singleton
+    fun providePreferencesDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
+
+        return PreferenceDataStoreFactory.create(
+            produceFile = { context.dataStoreFile("session_preferences.preferences_pb") }
+        )
+    }
+
     @Singleton
     @Provides
     fun provideProductCartDao(db: StoreDatabase): ProductCartDao = db.productCartDao()
+
+    // endregion
+
+    // region oauth
+
+    @Singleton
+    @Provides
+    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
 
     // endregion
 }

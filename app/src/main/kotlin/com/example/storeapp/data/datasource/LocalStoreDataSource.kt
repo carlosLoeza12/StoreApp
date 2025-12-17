@@ -2,10 +2,17 @@ package com.example.storeapp.data.datasource
 
 import com.example.storeapp.data.local.dao.ProductCartDao
 import com.example.storeapp.data.local.entity.ProductCartEntity
+import com.example.storeapp.data.local.preferences.UserPreferencesDataStore
+import com.example.storeapp.domain.model.User
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class LocalStoreDataSource @Inject constructor(private val dao: ProductCartDao) {
+class LocalStoreDataSource @Inject constructor(
+    private val dao: ProductCartDao,
+    private val userPreferences: UserPreferencesDataStore
+) {
+
+    // region store
 
     suspend fun getProductById(productId: Int): ProductCartEntity? {
 
@@ -41,4 +48,30 @@ class LocalStoreDataSource @Inject constructor(private val dao: ProductCartDao) 
 
         return dao.updateProductsAsPurchased(productsId)
     }
+
+    suspend fun clearProductCart() {
+
+        dao.clearProductCart()
+    }
+
+    // endregion
+
+    // region login
+
+    suspend fun saveUser(user: User) {
+
+        userPreferences.saveSession(user)
+    }
+
+    fun getUserSession(): Flow<User> {
+
+        return userPreferences.sessionFlow
+    }
+
+    suspend fun logout(): Boolean {
+
+        return userPreferences.clearSession()
+    }
+
+    // endregion
 }

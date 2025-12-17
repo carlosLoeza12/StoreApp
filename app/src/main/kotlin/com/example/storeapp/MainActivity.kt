@@ -5,7 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.storeapp.core.ui.theme.StoreAppTheme
-import com.example.storeapp.presentation.ui.categories.CategoriesScreen
+import com.example.storeapp.presentation.navigation.AppRootNavigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
 
             StoreAppTheme {
 
-                CategoriesScreen()
+                AppRootNavigation()
             }
         }
     }

@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.example.storeapp.R
+import com.example.storeapp.core.components.Loading
 import com.example.storeapp.core.components.StoreAsyncImage
 import com.example.storeapp.core.components.StoreText
 import com.example.storeapp.core.ui.theme.StoreAppTheme
@@ -63,7 +64,7 @@ fun ProductsByCategoryScreen(
 
             is ResponseResult.Loading -> {
 
-                CircularProgressIndicator()
+                Loading()
             }
 
             is ResponseResult.Success -> {

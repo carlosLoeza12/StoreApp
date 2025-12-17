@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -31,29 +30,30 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.storeapp.R
+import com.example.storeapp.core.components.Loading
 import com.example.storeapp.core.components.StoreText
 import com.example.storeapp.core.util.AppConstants.DELIMITER_DESTINATION
 import com.example.storeapp.core.util.LottieAnimation
 import com.example.storeapp.core.util.ResponseResult
 import com.example.storeapp.domain.model.StoreCategory
 import com.example.storeapp.presentation.navigation.BottomNavigationWrapper
-import com.example.storeapp.presentation.navigation.NavItem
-import com.example.storeapp.presentation.navigation.NavItem.Companion.navItems
+import com.example.storeapp.presentation.navigation.BottonNavItem
+import com.example.storeapp.presentation.navigation.BottonNavItem.Companion.bottonNavItems
 
 @Composable
-fun CategoriesScreen(viewModel: CategoriesViewModel = hiltViewModel()) {
+fun CategoriesScreen(viewModel: CategoriesViewModel = hiltViewModel(), logout : () -> Unit) {
 
     val state by viewModel.storeState.collectAsState()
 
     val navHostController: NavHostController = rememberNavController()
     val navStackEntry: NavBackStackEntry? by navHostController.currentBackStackEntryAsState()
-    val currentRoute = navStackEntry?.destination?.route
+    val currentRoute: String? = navStackEntry?.destination?.route
 
-    val selectedTab: NavItem = navItems.firstOrNull { navItem: NavItem ->
+    val selectedTab: BottonNavItem = bottonNavItems.firstOrNull { bottonNavItem: BottonNavItem ->
 
-        navItem.route::class.qualifiedName == currentRoute?.substringBefore(DELIMITER_DESTINATION)
+        bottonNavItem.route::class.qualifiedName == currentRoute?.substringBefore(DELIMITER_DESTINATION)
 
-    } ?: navItems.first()
+    } ?: bottonNavItems.first()
 
     Scaffold(
         topBar = { StoreTopBar() },
@@ -64,7 +64,7 @@ fun CategoriesScreen(viewModel: CategoriesViewModel = hiltViewModel()) {
 
             is ResponseResult.Loading -> {
 
-                CircularProgressIndicator()
+                Loading()
             }
 
             is ResponseResult.Success -> {
@@ -79,7 +79,8 @@ fun CategoriesScreen(viewModel: CategoriesViewModel = hiltViewModel()) {
                             .background(MaterialTheme.colorScheme.background)
                             .padding(paddingValues),
                         navHostController = navHostController,
-                        categories = categories
+                        categories = categories,
+                        logout = logout
                     )
                 } else {
 
@@ -106,7 +107,7 @@ fun StoreTopBar() {
                 modifier = Modifier,
                 text = stringResource(id = R.string.app_name),
                 fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.headlineLarge
+                style = MaterialTheme.typography.headlineMedium
             )
         },
         modifier = Modifier.fillMaxWidth(),
@@ -127,16 +128,16 @@ fun StoreTopBar() {
 }
 
 @Composable
-fun BottomBar(navHostController: NavHostController, selectedTab: NavItem) {
+fun BottomBar(navHostController: NavHostController, selectedTab: BottonNavItem) {
 
     NavigationBar(containerColor = MaterialTheme.colorScheme.background) {
 
-        navItems.forEach { navItem: NavItem ->
+        bottonNavItems.forEach { bottonNavItem: BottonNavItem ->
 
-            val isSelected: Boolean = selectedTab == navItem
+            val isSelected: Boolean = selectedTab == bottonNavItem
 
             NavigationBarItem(
-                navItem = navItem,
+                bottonNavItem = bottonNavItem,
                 isSelected = isSelected,
                 onClickItem = { destination: Any ->
 
@@ -155,18 +156,18 @@ fun BottomBar(navHostController: NavHostController, selectedTab: NavItem) {
 }
 
 @Composable
-fun RowScope.NavigationBarItem(navItem: NavItem, isSelected: Boolean, onClickItem: (Any) -> Unit) {
+fun RowScope.NavigationBarItem(bottonNavItem: BottonNavItem, isSelected: Boolean, onClickItem: (Any) -> Unit) {
 
     NavigationBarItem(
         selected = isSelected,
-        onClick = { onClickItem(navItem.route) },
+        onClick = { onClickItem(bottonNavItem.route) },
         icon = {
             Icon(
-                painter = painterResource(navItem.iconId),
+                painter = painterResource(bottonNavItem.iconId),
                 contentDescription = stringResource(R.string.categories_screen_navigation_icon_description)
             )
         },
-        label = { Text(text = stringResource(id = navItem.name)) },
+        label = { Text(text = stringResource(id = bottonNavItem.name)) },
         colors = NavigationBarItemDefaults.colors(
             selectedIconColor = MaterialTheme.colorScheme.primary,
             selectedTextColor = MaterialTheme.colorScheme.primary,

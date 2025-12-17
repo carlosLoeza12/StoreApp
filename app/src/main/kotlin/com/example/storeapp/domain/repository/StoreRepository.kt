@@ -3,6 +3,7 @@ package com.example.storeapp.domain.repository
 import com.example.storeapp.domain.model.ProductCart
 import com.example.storeapp.domain.model.StoreCategory
 import com.example.storeapp.domain.model.StoreProduct
+import com.example.storeapp.domain.model.User
 import kotlinx.coroutines.flow.Flow
 
 interface StoreRepository {
@@ -19,4 +20,14 @@ interface StoreRepository {
     suspend fun deleteProductFromCart(productId: Int): Int
 
     suspend fun updateProductsAsPurchased(productsId: List<Int>): Int
+
+    suspend fun clearLocalData()
+
+    suspend fun signInWithGoogle(idToken: String): User?
+
+    suspend fun saveSession(user: User)
+
+    fun getUserSession(): Flow<User>
+
+    suspend fun logout(): Boolean
 }
